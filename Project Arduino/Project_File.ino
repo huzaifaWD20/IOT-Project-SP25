@@ -5,11 +5,11 @@
 #include <ArduinoJson.h>
 
 // Network credentials
-const char* ssid = "Infinix SMART 6";      // Replace with your WiFi name
-const char* password = "hello101";   // Replace with your WiFi password
+const char* ssid = "xxx";      // Replace with your WiFi name
+const char* password = "xxx";   // Replace with your WiFi password
 
 // Server details
-const char* serverUrl = "https://strong-arriving-baboon.ngrok-free.app"; // Replace with your server IP/domain
+const char* serverUrl = "http://<your-local-host-server-url>"; // Replace with your server IP/domain
 const int dataPostInterval = 5000;       // Send data every 5 seconds
 const int settingsCheckInterval = 10000; // Check for new settings every 10 seconds
 
