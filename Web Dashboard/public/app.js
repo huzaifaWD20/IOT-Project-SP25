@@ -773,14 +773,7 @@ socket.on('newData', ({ deviceId, data }) => {
   // Initialize Firebase
   // Note: You should replace these with your actual Firebase configuration details
   const firebaseConfig = {
-    apiKey: "AIzaSyC3KA5h5R0DYEA-hKY05Iy1M-UOru-nelA",
-    authDomain: "gasleakmonitor-e06f4.firebaseapp.com",
-    databaseURL: "https://gasleakmonitor-e06f4-default-rtdb.firebaseio.com",
-    projectId: "gasleakmonitor-e06f4",
-    storageBucket: "gasleakmonitor-e06f4.firebasestorage.app",
-    messagingSenderId: "159537404251",
-    appId: "1:159537404251:web:9d1755139362ab49fae27e",
-    measurementId: "G-8M8FD83JH7"
+    //your-firebase-project-configuration
   };
   
   // Initialize Firebase
