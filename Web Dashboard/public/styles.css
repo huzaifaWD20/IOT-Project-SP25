@@ -1,0 +1,476 @@
+/* Base styles */
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  :root {
+    --primary-color: #3498db;
+    --primary-dark: #2980b9;
+    --success-color: #27ae60;
+    --warning-color: #f39c12;
+    --danger-color: #e74c3c;
+    --background-color: #f4f7fa;
+    --card-background: #ffffff;
+    --text-color: #2c3e50;
+    --text-secondary: #7f8c8d;
+    --border-radius: 10px;
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+  
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Header styles */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  h1 {
+    color: var(--text-color);
+    font-size: 2.2rem;
+    font-weight: 600;
+  }
+  
+  .device-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  select {
+    padding: 8px 16px;
+    border-radius: var(--border-radius);
+    border: 1px solid #ddd;
+    background-color: white;
+    font-size: 1rem;
+    min-width: 200px;
+  }
+  
+  /* Dashboard grid */
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  
+  /* Cards */
+  .card {
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 20px;
+    transition: transform 0.2s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .card h2 {
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+    color: var(--text-color);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 10px;
+  }
+  
+  /* Current gas card */
+  #current-gas-card {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  
+  .big-reading {
+    font-size: 3.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: var(--primary-color);
+    margin: 20px 0;
+  }
+  
+  .status-indicator {
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: white;
+  }
+  
+  .status-normal {
+    background-color: var(--success-color);
+  }
+  
+  .status-warning {
+    background-color: var(--warning-color);
+  }
+  
+  .status-danger {
+    background-color: var(--danger-color);
+  }
+  
+  .last-updated {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+  
+  /* Threshold card */
+  #threshold-card {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  
+  .slider-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .current-value {
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+  
+  input[type="range"] {
+    width: 100%;
+    height: 10px;
+    -webkit-appearance: none;
+    background: #ddd;
+    border-radius: 5px;
+    outline: none;
+  }
+  
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  /* Buttons */
+  .primary-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    width: 100%;
+  }
+  
+  .primary-button:hover {
+    background-color: var(--primary-dark);
+  }
+  
+  /* Buzzer card */
+  #buzzer-card {
+    grid-column: 3;
+    grid-row: 1;
+  }
+  
+  .toggle-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .toggle-label {
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+  
+  .toggle-switch {
+    position: relative;
+    width: 60px;
+    height: 34px;
+    margin: 10px 0;
+  }
+  
+  .toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .toggle-switch .toggle-label {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+  }
+  
+  .toggle-switch .toggle-label:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+  }
+  
+  .toggle-switch input:checked + .toggle-label {
+    background-color: var(--success-color);
+  }
+  
+  .toggle-switch input:checked + .toggle-label:before {
+    transform: translateX(26px);
+  }
+  
+  #buzzer-status {
+    font-weight: 600;
+  }
+  
+  /* Alert card */
+  #alert-card {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  
+  .alert-container {
+    max-height: 230px;
+    overflow-y: auto;
+  }
+  
+  .alert-item {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: rgba(231, 76, 60, 0.1);
+    border-left: 4px solid var(--danger-color);
+  }
+  
+  .alert-time {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+  
+  .alert-value {
+    font-weight: 600;
+    margin: 5px 0;
+  }
+  
+  .no-alerts {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 20px;
+  }
+  
+  /* Chart card */
+  #history-chart-card {
+    grid-column: 2 / span 2;
+    grid-row: 2;
+  }
+  
+  .chart-container {
+    position: relative;
+    height: 230px;
+    width: 100%;
+  }
+  
+  .time-range-selector {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .time-range-btn {
+    background-color: #eee;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .time-range-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
+  /* Device info card */
+  #device-info-card {
+    grid-column: 1 / span 3;
+    grid-row: 3;
+  }
+  
+  .device-info-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .device-info-table th,
+  .device-info-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .device-info-table th {
+    width: 150px;
+    color: var(--text-secondary);
+  }
+  
+  /* Alert notifications */
+  #alerts-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    z-index: 1000;
+  }
+  
+  .alert-notification {
+    background-color: var(--danger-color);
+    color: white;
+    border-radius: var(--border-radius);
+    padding: 15px;
+    margin-top: 10px;
+    box-shadow: var(--box-shadow);
+    animation: slideIn 0.3s ease-out;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  
+  .alert-notification.fade-out {
+    animation: fadeOut 0.5s ease-out forwards;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 1200px) {
+    .dashboard-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    #current-gas-card {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    
+    #threshold-card {
+      grid-column: 2;
+      grid-row: 1;
+    }
+    
+    #buzzer-card {
+      grid-column: 1;
+      grid-row: 2;
+    }
+    
+    #alert-card {
+      grid-column: 2;
+      grid-row: 2;
+    }
+    
+    #history-chart-card {
+      grid-column: 1 / span 2;
+      grid-row: 3;
+    }
+    
+    #device-info-card {
+      grid-column: 1 / span 2;
+      grid-row: 4;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .dashboard-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    header {
+      flex-direction: column;
+      gap: 15px;
+      text-align: center;
+    }
+    
+    h1 {
+      font-size: 1.8rem;
+    }
+    
+    #current-gas-card,
+    #threshold-card,
+    #buzzer-card,
+    #alert-card,
+    #history-chart-card,
+    #device-info-card {
+      grid-column: 1;
+    }
+    
+    #current-gas-card {
+      grid-row: 1;
+    }
+    
+    #threshold-card {
+      grid-row: 2;
+    }
+    
+    #buzzer-card {
+      grid-row: 3;
+    }
+    
+    #alert-card {
+      grid-row: 4;
+    }
+    
+    #history-chart-card {
+      grid-row: 5;
+    }
+    
+    #device-info-card {
+      grid-row: 6;
+    }
+    
+    .big-reading {
+      font-size: 2.5rem;
+    }
+  }

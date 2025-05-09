@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gas Detector IoT Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.min.js"></script>
+  <!-- Include moment adapter before Chart.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
+  <!-- Add the missing Chart.js adapter for moment -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-adapter-moment/1.0.1/chartjs-adapter-moment.min.js"></script>
+  
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Gas Detector IoT Dashboard</h1>
+      <div class="device-selector">
+        <label for="device-select">Select Device:</label>
+        <select id="device-select">
+          <option value="" disabled selected>No devices available</option>
+        </select>
+      </div>
+    </header>
+
+    <div class="dashboard-grid">
+      <!-- Current Gas Level Card -->
+      <div class="card" id="current-gas-card">
+        <h2>Current Gas Level</h2>
+        <div class="big-reading" id="current-gas-value">--</div>
+        <div class="status-indicator" id="gas-status">No Data</div>
+        <div class="last-updated" id="last-update-time">Last update: Never</div>
+      </div>
+
+      <!-- Threshold Control Card -->
+      <div class="card" id="threshold-card">
+        <h2>Threshold Control</h2>
+        <div class="slider-container">
+          <span class="current-value">Current: <span id="threshold-value">--</span></span>
+          <input type="range" id="threshold-slider" min="100" max="2000" step="50" value="800">
+        </div>
+        <button class="primary-button" id="update-threshold-btn">Update Threshold</button>
+      </div>
+
+      <!-- Buzzer Control Card -->
+      <div class="card" id="buzzer-card">
+        <h2>LED/Buzzer Control</h2>
+        <div class="toggle-container">
+          <span class="toggle-label">Status:</span>
+          <div class="toggle-switch">
+            <input type="checkbox" id="buzzer-toggle" checked>
+            <label for="buzzer-toggle" class="toggle-label"></label>
+          </div>
+          <span id="buzzer-status">Enabled</span>
+        </div>
+      </div>
+
+      <!-- Alert History Card -->
+      <div class="card" id="alert-card">
+        <h2>Alert History</h2>
+        <div class="alert-container" id="alert-list">
+          <div class="no-alerts">No alerts recorded</div>
+        </div>
+      </div>
+
+      <!-- Gas Level History Chart Card -->
+      <div class="card chart-card" id="history-chart-card">
+        <h2>Gas Level History</h2>
+        <div class="time-range-selector">
+          <button class="time-range-btn active" data-range="1h">1h</button>
+          <button class="time-range-btn" data-range="3h">3h</button>
+          <button class="time-range-btn" data-range="6h">6h</button>
+          <button class="time-range-btn" data-range="24h">24h</button>
+          <button class="time-range-btn" data-range="all">All</button>
+        </div>
+        <div class="chart-container">
+          <canvas id="gas-history-chart"></canvas>
+        </div>
+      </div>
+
+      <!-- Device Info Card -->
+      <div class="card" id="device-info-card">
+        <h2>Device Information</h2>
+        <table class="device-info-table">
+          <tr>
+            <th>Device ID:</th>
+            <td id="device-id">--</td>
+          </tr>
+          <tr>
+            <th>IP Address:</th>
+            <td id="device-ip">--</td>
+          </tr>
+          <tr>
+            <th>Type:</th>
+            <td id="device-type">--</td>
+          </tr>
+          <tr>
+            <th>Last Seen:</th>
+            <td id="device-last-seen">--</td>
+          </tr>
+          <tr>
+            <th>Status:</th>
+            <td id="device-status">--</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Alerts Notification Area -->
+    <div id="alerts-container"></div>
+  </div>
+
+  <!-- Firebase configuration script -->
+  <!-- <script src="firebase-config.js"></script> -->
+  <script src="app.js"></script>
+</body>
+</html>

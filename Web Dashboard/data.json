@@ -1,0 +1,16 @@
+{
+  "devices": {
+    "246F28105288": {
+      "deviceId": "246F28105288",
+      "type": "gas_detector",
+      "ipAddress": "192.168.145.165",
+      "lastSeen": 1746689868855
+    }
+  },
+  "settings": {
+    "246F28105288": {
+      "threshold": 1000,
+      "buzzerEnabled": true
+    }
+  }
+}
